@@ -1,0 +1,36 @@
+esphome:
+  name: esphome-web-7b2218
+  platform: ESP8266
+  board: d1_mini
+
+  includes:
+    - fake_ir_led.h
+
+light:
+- platform: custom
+  lambda: |-
+    auto light_out = new FakeIrLed();
+    App.register_component(light_out);
+    return {light_out};
+
+  lights:
+    - name: "Fake IR LED"
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esphome-Web-7B2218"
+    password: "YJRsQai9x7w9"
+
+captive_portal:
